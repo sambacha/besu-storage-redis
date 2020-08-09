@@ -1,6 +1,16 @@
-# Besu Redis Key value store plugin
+# Hyperledger Besu Redis Plugin
 
-## Use case
+- [Hyperledger Besu Redis Plugin](#hyperledger-besu-redis-plugin)
+  * [Overview](#overview)
+  * [Architecture](#architecture)
+    + [Usage](#usage)
+      - [Start Redis server.](#start-redis-server)
+      - [Build Redis plugin](#build-redis-plugin)
+      - [Start Besu with the redis storage plugin.](#start-besu-with-the-redis-storage-plugin)
+  * [License](#license)
+  
+
+## Overview
 
 Using a Redis cluster as a storage engine for Besu enables to specify multiple types of Besu nodes depending on the features. This approach would allow us to have optimized nodes for query the database. RocksDB's lock mechanism makes harder to have multiple instances of Besu accessing the same database. Redis on the other hand enables this use case, we can imagine a categorisation of Besu nodes like the following:
 
@@ -12,9 +22,9 @@ Using a Redis cluster as a storage engine for Besu enables to specify multiple t
 
 ![architecture](./src/main/resources/architecture.png)
 
-## Usage
+### Usage
 
-### Start Redis server.
+#### Start Redis server.
 
 Using docker compose:
 
@@ -36,14 +46,19 @@ Remove Redis volume:
 docker volume rm -f docker_redis_data
 ```
 
-### Build Redis plugin
+#### Build Redis plugin
 
 ```shell script
 ./gradlew assemble
 ```
 
-### Start Besu with the redis storage plugin.
+#### Start Besu with the redis storage plugin.
 
 ```shell script
 ./besu.sh --key-value-storage=redis-storage --plugin-redis-storage-host=localhost --plugin-redis-storage-port=6379
 ```
+
+## License 
+
+SEE LICENSE 
+
