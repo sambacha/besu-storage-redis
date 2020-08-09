@@ -7,6 +7,10 @@
       - [Start Redis server.](#start-redis-server)
       - [Build Redis plugin](#build-redis-plugin)
       - [Start Besu with the redis storage plugin.](#start-besu-with-the-redis-storage-plugin)
+    + [Troubleshooting](#troubleshooting)
+      - [Host directory for the volume](#host-directory-for-the-volume)
+      - [Get the root context by using $. e.g.](#get-the-root-context-by-using---eg)
+      - [Find IP address where 'string' is `container_id`](#find-ip-address-where--string--is--container-id-)
   * [License](#license)
   
 
@@ -58,6 +62,24 @@ docker volume rm -f docker_redis_data
 ./besu.sh --key-value-storage=redis-storage --plugin-redis-storage-host=localhost --plugin-redis-storage-port=6379
 ```
 
+### Troubleshooting
+```bash
+$ docker inspect -f ' ' $(docker ps -aq)
+```
+#### Host directory for the volume
+```bash
+$ docker inspect -f '' <volume_name>
+ ```
+#### Get the root context by using $. e.g.
+```bash
+$ docker inspect -f '  has pid  ' jenkins
+```
+ 
+#### Find IP address where 'string' is `container_id`
+```bash
+$ docker inspect -f '{{.NetworkSettings.IPAddress}}' aac0b8ed4af6
+```
+ 
 ## License 
 
 SEE LICENSE 
